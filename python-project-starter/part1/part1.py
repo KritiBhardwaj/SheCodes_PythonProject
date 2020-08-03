@@ -33,7 +33,10 @@ def convert_f_to_c(temp_in_farenheit):
     Returns:
         An integer representing a temperature in degrees celcius.
     """
-    pass
+    temp_in_farenheit = float(temp_in_farenheit)
+    temp_in_celcius = (temp_in_farenheit - 32) * (5/9)
+    temp_in_celcius = format_temperature(temp_in_celcius)
+    return temp_in_celcius
 
 
 def calculate_mean(total, num_items):
@@ -45,7 +48,8 @@ def calculate_mean(total, num_items):
     Returns:
         An integer representing the mean of the numbers.
     """
-    pass
+    mean = float(total)/ num_items
+    return mean
 
 
 def process_weather(forecast_file):
@@ -57,11 +61,55 @@ def process_weather(forecast_file):
     Returns:
         A string containing the processed and formatted weather data.
     """
-    pass
+    with open(forecast_file) as file:
+        data = json.load(file)
+    
+    numberOfDays = 0
+    totalMin = 0 
+    totalMax = 0
+    minTemps = []
+    maxTemps = []
+ 
+
+    for day in data["DailyForecasts"]:
+        numberOfDays +=1
+        date = convert_date(day['Date'])
+        
+        minTemp = format_temperature(convert_f_to_c(day["Temperature"]["Minimum"]["Value"]))
+        minTemps.append(minTemp)
+        lowestTemp = min(minTemps)
+        totalMin = sum(maxTemps)
+        avgMin = calculate_mean(totalMin, numberOfDays)
+
+
+        maxTemp = format_temperature(convert_f_to_c(day["Temperature"]["Maximum"]["Value"]))
+        maxTemps.append(maxTemp)
+        highestTemp = max(maxTemps)
+        totalMax = sum(maxTemps)
+        avgMax = calculate_mean(totalMax, numberOfDays)
+
+
+        dayDesc = day["Day"]["LongPhrase"]
+        dayRainProb = day["Day"]["RainProbability"]
+        nightDesc = day["Night"]["LongPhrase"]
+        nightRainProb = day["Night"]["RainProbability"]
+
+        print()
+        print(f"-------- {date} --------")
+        print(f"Minimum Temperature: {minTemp}")
+        print(f"Maximum Temperature: {maxTemp}")
+        print(f"Daytime: {dayDesc}")
+        print(f"    Chance of rain:  {dayRainProb}%")
+        print(f"Nighttime: {nightDesc}")
+        print(f"    Chance of rain:  {nightRainProb}%")
+
+        printout = "\n" + "-------- " + date + " --------" + "\n" + "Minimum Temperature: " + minTemp + "\n" + "Maximum Temperature: " + maxTemp + "\n" + "Daytime: " + dayDesc + "\n" + "    Chance of rain:  " + dayRainProb + "\n" + "Nighttime: " + nightDesc + "\n" + "    Chance of rain:  " + nightRainProb
+        return printout
 
 
 if __name__ == "__main__":
     print(process_weather("data/forecast_5days_a.json"))
+
 
 
 
