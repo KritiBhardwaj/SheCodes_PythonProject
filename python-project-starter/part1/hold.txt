@@ -1,0 +1,58 @@
+with open(forecast_file) as file:
+        data = json.load(file)
+    
+    numberOfDays = 0
+    totalMin = 0 
+    totalMax = 0
+    minTemps = []
+    maxTemps = []
+ 
+
+    for day in data["DailyForecasts"]:
+        numberOfDays +=1
+        date = convert_date(day['Date'])
+        print(date)
+        
+        minTemp = (convert_f_to_c(day["Temperature"]["Minimum"]["Value"]))
+        minTemps.append(minTemp)
+        print(minTemp)
+        print(minTemps)
+        lowestTemp = min(minTemps)
+        # totalMin = sum(minTemps)
+        avgMin = calculate_mean(totalMin, numberOfDays)
+
+        maxTemp = (convert_f_to_c(day["Temperature"]["Maximum"]["Value"]))
+        maxTemps.append(maxTemp)
+        highestTemp = min(maxTemps)
+        # totalMax = sum(maxTemps)
+        avgMin = calculate_mean(totalMax, numberOfDays)
+
+        # maxTemp = (convert_f_to_c(day["Temperature"]["Maximum"]["Value"]))
+        # maxTemps.append(maxTemp)
+        # highestTemp = max(maxTemps)
+        # totalMax = sum(maxTemps)
+        # avgMax = calculate_mean(totalMax, numberOfDays)
+
+        dayDesc = day["Day"]["LongPhrase"]
+        dayRainProb = day["Day"]["RainProbability"]
+        nightDesc = day["Night"]["LongPhrase"]
+        nightRainProb = day["Night"]["RainProbability"]
+
+
+
+        # return f"Date: {date} \nLowest Temp: {lowestTemp} \nHighestTemp{highestTemp} \nMinTemps are:\
+        #      {minTemps} \nMaxTemps{maxTemps} \nAvgMin{avgMin} \nAvgMax{avgMax} \nDay{dayDesc} \nNight{nightDesc}"
+
+
+
+        # print()
+        # print(f"-------- {date} --------")
+        # print(f"Minimum Temperature: {minTemp}")
+        # print(f"Maximum Temperature: {maxTemp}")
+        # print(f"Daytime: {dayDesc}")
+        # print(f"    Chance of rain:  {dayRainProb}%")
+        # print(f"Nighttime: {nightDesc}")
+        # print(f"    Chance of rain:  {nightRainProb}%")
+
+        # printout = "\n" + "-------- " + date + " --------" + "\n" + "Minimum Temperature: " + minTemp + "\n" + "Maximum Temperature: " + maxTemp + "\n" + "Daytime: " + dayDesc + "\n" + "    Chance of rain:  " + dayRainProb + "\n" + "Nighttime: " + nightDesc + "\n" + "    Chance of rain:  " + nightRainProb
+        # return printout
