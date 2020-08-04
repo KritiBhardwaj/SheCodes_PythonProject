@@ -27,7 +27,6 @@ def convert_date(iso_string):
 
 def convert_f_to_c(temp_in_farenheit):
     """Converts an temperature from farenheit to celcius
-
     Args:
         temp_in_farenheit: integer representing a temperature.
     Returns:
@@ -54,7 +53,6 @@ def calculate_mean(total, num_items):
 
 def process_weather(forecast_file):
     """Converts raw weather data into meaningful text.
-
     Args:
         forecast_file: A string representing the file path to a file
             containing raw weather data.
@@ -119,9 +117,3 @@ def process_weather(forecast_file):
 
 if __name__ == "__main__":
     print(process_weather("data/forecast_5days_a.json"))
-
-
-
-
-
-
