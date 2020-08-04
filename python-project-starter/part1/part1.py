@@ -34,8 +34,7 @@ def convert_f_to_c(temp_in_farenheit):
         An integer representing a temperature in degrees celcius.
     """
     temp_in_farenheit = float(temp_in_farenheit)
-    temp_in_celcius = (temp_in_farenheit - 32) * (5/9)
-    temp_in_celcius = format_temperature(temp_in_celcius)
+    temp_in_celcius = round((temp_in_farenheit - 32) * (5/9),1)
     return temp_in_celcius
 
 
@@ -49,6 +48,7 @@ def calculate_mean(total, num_items):
         An integer representing the mean of the numbers.
     """
     mean = float(total)/ num_items
+    mean = round(mean,1)
     return mean
 
 
@@ -64,48 +64,58 @@ def process_weather(forecast_file):
     with open(forecast_file) as file:
         data = json.load(file)
     
-    numberOfDays = 0
-    totalMin = 0 
-    totalMax = 0
+    num_of_days = 0
     minTemps = []
     maxTemps = []
- 
+    date_List = []
+    dailyOutput_List = []
+
 
     for day in data["DailyForecasts"]:
-        numberOfDays +=1
+        num_of_days += 1
         date = convert_date(day['Date'])
-        
-        minTemp = format_temperature(convert_f_to_c(day["Temperature"]["Minimum"]["Value"]))
-        minTemps.append(minTemp)
-        lowestTemp = min(minTemps)
-        totalMin = sum(maxTemps)
-        avgMin = calculate_mean(totalMin, numberOfDays)
+        date_List.append(date)
 
+        min_temp = convert_f_to_c(day["Temperature"]["Minimum"]["Value"])
+        minTemps.append(min_temp)
+        totalMin = sum(minTemps)
+        lowestIndex = minTemps.index(min(minTemps))       
+        lowest_temp = format_temperature(min(minTemps))
+        lowestTempDate = date_List[lowestIndex]
+        avgMin = format_temperature(calculate_mean(totalMin, num_of_days))
 
-        maxTemp = format_temperature(convert_f_to_c(day["Temperature"]["Maximum"]["Value"]))
-        maxTemps.append(maxTemp)
-        highestTemp = max(maxTemps)
+        max_temp = convert_f_to_c(day["Temperature"]["Maximum"]["Value"])
+        maxTemps.append(max_temp)
         totalMax = sum(maxTemps)
-        avgMax = calculate_mean(totalMax, numberOfDays)
-
+        highestIndex = maxTemps.index(max(maxTemps))
+        highest_temp = format_temperature(max(maxTemps))
+        highestTempDate = date_List[highestIndex]
+        avgMax = format_temperature(calculate_mean(totalMax, num_of_days))
 
         dayDesc = day["Day"]["LongPhrase"]
         dayRainProb = day["Day"]["RainProbability"]
         nightDesc = day["Night"]["LongPhrase"]
         nightRainProb = day["Night"]["RainProbability"]
 
-        print()
-        print(f"-------- {date} --------")
-        print(f"Minimum Temperature: {minTemp}")
-        print(f"Maximum Temperature: {maxTemp}")
-        print(f"Daytime: {dayDesc}")
-        print(f"    Chance of rain:  {dayRainProb}%")
-        print(f"Nighttime: {nightDesc}")
-        print(f"    Chance of rain:  {nightRainProb}%")
+        line1 = f"-------- {date} --------"
+        line2 = f"Minimum Temperature: {min_temp}"
+        line3 = f"Maximum Temperature: {max_temp}"
+        line4 = f"Daytime: {dayDesc}"
+        line5 = f"    Chance of rain:  {dayRainProb}%"
+        line6 = f"Nighttime: {nightDesc}"
+        line7 = f"    Chance of rain:  {nightRainProb}%"
+        dailyOutput = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4 + "\n" + line5 + "\n" + line6 + "\n" + line7 + "\n"
+        dailyOutput_List.append(dailyOutput)
+        print(dailyOutput)
 
-        printout = "\n" + "-------- " + date + " --------" + "\n" + "Minimum Temperature: " + minTemp + "\n" + "Maximum Temperature: " + maxTemp + "\n" + "Daytime: " + dayDesc + "\n" + "    Chance of rain:  " + dayRainProb + "\n" + "Nighttime: " + nightDesc + "\n" + "    Chance of rain:  " + nightRainProb
-        return printout
+    summary = f"{num_of_days} Day Overview\n\
+    The lowest temperature will be {lowest_temp}, and will occur on {lowestTempDate}.\n\
+    The highest temperature will be {highest_temp}, and will occur on {highestTempDate}.\n\
+    The average low this week is {avgMin}.\n\
+    The average high this week is {avgMax}.\n\
+    "
 
+    return summary 
 
 if __name__ == "__main__":
     print(process_weather("data/forecast_5days_a.json"))
