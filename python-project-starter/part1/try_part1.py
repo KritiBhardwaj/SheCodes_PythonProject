@@ -59,16 +59,15 @@ def process_weather(forecast_file):
     Returns:
         A string containing the processed and formatted weather data.
     """
+    with open(forecast_file) as file:
+        data = json.load(file)
+    
     num_of_days = 0
     minTemps = []
     maxTemps = []
     date_List = []
     output = ""
-    outputDaily = ""
 
-    with open(forecast_file) as file:
-        data = json.load(file)
-    
     for day in data["DailyForecasts"]:
         num_of_days += 1
         date = convert_date(day['Date'])
@@ -95,9 +94,6 @@ def process_weather(forecast_file):
         nightDesc = day["Night"]["LongPhrase"]
         nightRainProb = day["Night"]["RainProbability"]
 
-        min_temp = format_temperature(min_temp)
-        max_temp = format_temperature(max_temp)
-
         line1 = f"\n-------- {date} --------"
         line2 = f"Minimum Temperature: {min_temp}"
         line3 = f"Maximum Temperature: {max_temp}"
@@ -111,7 +107,8 @@ def process_weather(forecast_file):
     The lowest temperature will be {lowest_temp}, and will occur on {lowestTempDate}.\n\
     The highest temperature will be {highest_temp}, and will occur on {highestTempDate}.\n\
     The average low this week is {avgMin}.\n\
-    The average high this week is {avgMax}.\n"
+    The average high this week is {avgMax}.\n\
+    "
 
     output = output + outputDaily + "\n"
     return output

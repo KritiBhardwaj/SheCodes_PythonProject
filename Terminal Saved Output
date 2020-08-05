@@ -1,0 +1,212 @@
+Last login: Wed Aug  5 16:39:36 on ttys000
+kritibhardwaj@Kritis-MacBook-Pro ~ % cd Desktop/SheCodesBrisbane2020/SheCodes_PythonProject/   
+kritibhardwaj@Kritis-MacBook-Pro SheCodes_PythonProject % ls
+python-project-starter	students 
+kritibhardwaj@Kritis-MacBook-Pro SheCodes_PythonProject % cd python-project-starter/part1 
+kritibhardwaj@Kritis-MacBook-Pro part1 % ls
+__pycache__	part1.py	tests
+data		run_tests.py	try_part1.py
+kritibhardwaj@Kritis-MacBook-Pro part1 % python3 run_tests.py 
+Running Tests...
+
+..FFF
+======================================================================
+FAIL: test_correct_output_10days (tests.part1_tests.Part1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kritibhardwaj/Desktop/SheCodesBrisbane2020/SheCodes_PythonProject/python-project-starter/part1/tests/part1_tests.py", line 30, in test_correct_output_10days
+    self.assertEqual(expected_string, result_string)
+AssertionError: '8 Da[258 chars]°C.\n\n-------- Friday 19 June 2020 --------\n[1767 chars]\n\n' != '8 Da[258 chars]°C.\n    \n-------- Friday 19 June 2020 ------[1773 chars]\n\n'
+  8 Day Overview
+      The lowest temperature will be 8.3°C, and will occur on Friday 19 June 2020.
+      The highest temperature will be 22.2°C, and will occur on Sunday 21 June 2020.
+      The average low this week is 11.4°C.
+      The average high this week is 19.8°C.
+- 
++     
+  -------- Friday 19 June 2020 --------
+  Minimum Temperature: 8.3°C
+  Maximum Temperature: 17.8°C
+  Daytime: Sunshine mixing with some clouds
+      Chance of rain:  1%
+  Nighttime: Clear
+      Chance of rain:  0%
+  
+  -------- Saturday 20 June 2020 --------
+  Minimum Temperature: 10.6°C
+  Maximum Temperature: 19.4°C
+  Daytime: Plenty of sunshine
+      Chance of rain:  0%
+  Nighttime: Clear
+      Chance of rain:  1%
+  
+  -------- Sunday 21 June 2020 --------
+  Minimum Temperature: 14.4°C
+  Maximum Temperature: 22.2°C
+  Daytime: Pleasant with sunshine
+      Chance of rain:  1%
+  Nighttime: Mainly clear
+      Chance of rain:  1%
+  
+  -------- Monday 22 June 2020 --------
+  Minimum Temperature: 15.0°C
+  Maximum Temperature: 21.7°C
+  Daytime: Increasing clouds and breezy; periods of rain late this afternoon
+      Chance of rain:  67%
+  Nighttime: Windy this evening with periods of rain; mostly cloudy
+      Chance of rain:  67%
+  
+  -------- Tuesday 23 June 2020 --------
+  Minimum Temperature: 11.1°C
+  Maximum Temperature: 19.4°C
+  Daytime: A morning shower in spots; otherwise, intervals of clouds and sun
+      Chance of rain:  58%
+  Nighttime: Partly cloudy
+      Chance of rain:  5%
+  
+  -------- Wednesday 24 June 2020 --------
+  Minimum Temperature: 8.9°C
+  Maximum Temperature: 18.9°C
+  Daytime: Intervals of clouds and sun
+      Chance of rain:  2%
+  Nighttime: Partly cloudy
+      Chance of rain:  0%
+  
+  -------- Thursday 25 June 2020 --------
+  Minimum Temperature: 11.1°C
+  Maximum Temperature: 20.0°C
+  Daytime: Sunshine and patchy clouds
+      Chance of rain:  1%
+  Nighttime: Partly cloudy
+      Chance of rain:  25%
+  
+  -------- Friday 26 June 2020 --------
+  Minimum Temperature: 11.7°C
+  Maximum Temperature: 18.9°C
+  Daytime: Intervals of clouds and sunshine
+      Chance of rain:  25%
+  Nighttime: Patchy clouds
+      Chance of rain:  3%
+  
++ 
+
+
+======================================================================
+FAIL: test_correct_output_5days_version_a (tests.part1_tests.Part1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kritibhardwaj/Desktop/SheCodesBrisbane2020/SheCodes_PythonProject/python-project-starter/part1/tests/part1_tests.py", line 16, in test_correct_output_5days_version_a
+    self.assertEqual(expected_string, result_string)
+AssertionError: '5 Da[258 chars]°C.\n\n-------- Friday 19 June 2020 --------\n[1188 chars]\n\n' != '5 Da[258 chars]°C.\n    \n-------- Friday 19 June 2020 ------[1194 chars]\n\n'
+  5 Day Overview
+      The lowest temperature will be 8.3°C, and will occur on Friday 19 June 2020.
+      The highest temperature will be 22.2°C, and will occur on Sunday 21 June 2020.
+      The average low this week is 11.7°C.
+      The average high this week is 20.1°C.
+- 
++     
+  -------- Friday 19 June 2020 --------
+  Minimum Temperature: 8.3°C
+  Maximum Temperature: 17.8°C
+  Daytime: Sunshine mixing with some clouds
+      Chance of rain:  1%
+  Nighttime: Clear
+      Chance of rain:  0%
+  
+  -------- Saturday 20 June 2020 --------
+  Minimum Temperature: 10.6°C
+  Maximum Temperature: 19.4°C
+  Daytime: Plenty of sunshine
+      Chance of rain:  0%
+  Nighttime: Clear
+      Chance of rain:  1%
+  
+  -------- Sunday 21 June 2020 --------
+  Minimum Temperature: 14.4°C
+  Maximum Temperature: 22.2°C
+  Daytime: Pleasant with sunshine
+      Chance of rain:  1%
+  Nighttime: Mainly clear
+      Chance of rain:  1%
+  
+  -------- Monday 22 June 2020 --------
+  Minimum Temperature: 14.4°C
+  Maximum Temperature: 22.2°C
+  Daytime: Increasing clouds and breezy; periods of rain late in the afternoon
+      Chance of rain:  63%
+  Nighttime: Breezy in the evening with periods of rain; otherwise, clouds breaking
+      Chance of rain:  71%
+  
+  -------- Tuesday 23 June 2020 --------
+  Minimum Temperature: 10.6°C
+  Maximum Temperature: 18.9°C
+  Daytime: A shower; plenty of clouds in the morning, then times of clouds and sun in the afternoon
+      Chance of rain:  56%
+  Nighttime: Partly cloudy with a shower in spots late
+      Chance of rain:  46%
+  
++ 
+
+
+======================================================================
+FAIL: test_correct_output_5days_version_b (tests.part1_tests.Part1Tests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/kritibhardwaj/Desktop/SheCodesBrisbane2020/SheCodes_PythonProject/python-project-starter/part1/tests/part1_tests.py", line 23, in test_correct_output_5days_version_b
+    self.assertEqual(expected_string, result_string)
+AssertionError: '5 Da[261 chars]°C.\n\n-------- Monday 22 June 2020 --------\n[1153 chars]\n\n' != '5 Da[261 chars]°C.\n    \n-------- Monday 22 June 2020 ------[1159 chars]\n\n'
+  5 Day Overview
+      The lowest temperature will be 8.9°C, and will occur on Wednesday 24 June 2020.
+      The highest temperature will be 21.7°C, and will occur on Monday 22 June 2020.
+      The average low this week is 11.6°C.
+      The average high this week is 19.8°C.
+- 
++     
+  -------- Monday 22 June 2020 --------
+  Minimum Temperature: 15.0°C
+  Maximum Temperature: 21.7°C
+  Daytime: Increasing clouds and breezy; periods of rain late this afternoon
+      Chance of rain:  67%
+  Nighttime: Windy this evening with periods of rain; mostly cloudy
+      Chance of rain:  67%
+  
+  -------- Tuesday 23 June 2020 --------
+  Minimum Temperature: 11.1°C
+  Maximum Temperature: 19.4°C
+  Daytime: A morning shower in spots; otherwise, intervals of clouds and sun
+      Chance of rain:  58%
+  Nighttime: Partly cloudy
+      Chance of rain:  5%
+  
+  -------- Wednesday 24 June 2020 --------
+  Minimum Temperature: 8.9°C
+  Maximum Temperature: 18.9°C
+  Daytime: Intervals of clouds and sun
+      Chance of rain:  2%
+  Nighttime: Partly cloudy
+      Chance of rain:  0%
+  
+  -------- Thursday 25 June 2020 --------
+  Minimum Temperature: 11.1°C
+  Maximum Temperature: 20.0°C
+  Daytime: Sunshine and patchy clouds
+      Chance of rain:  1%
+  Nighttime: Partly cloudy
+      Chance of rain:  25%
+  
+  -------- Friday 26 June 2020 --------
+  Minimum Temperature: 11.7°C
+  Maximum Temperature: 18.9°C
+  Daytime: Intervals of clouds and sunshine
+      Chance of rain:  25%
+  Nighttime: Patchy clouds
+      Chance of rain:  3%
+  
++ 
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.046s
+
+FAILED (failures=3)
+kritibhardwaj@Kritis-MacBook-Pro part1 % 
