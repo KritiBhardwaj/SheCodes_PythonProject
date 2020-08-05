@@ -66,8 +66,8 @@ def process_weather(forecast_file):
     minTemps = []
     maxTemps = []
     date_List = []
-    dailyOutput_List = []
-
+    output = ""
+    outputDaily = ""
 
     for day in data["DailyForecasts"]:
         num_of_days += 1
@@ -95,25 +95,27 @@ def process_weather(forecast_file):
         nightDesc = day["Night"]["LongPhrase"]
         nightRainProb = day["Night"]["RainProbability"]
 
-        line1 = f"-------- {date} --------"
+        min_temp = format_temperature(min_temp)
+        max_temp = format_temperature(max_temp)
+
+        line1 = f"\n-------- {date} --------"
         line2 = f"Minimum Temperature: {min_temp}"
         line3 = f"Maximum Temperature: {max_temp}"
         line4 = f"Daytime: {dayDesc}"
         line5 = f"    Chance of rain:  {dayRainProb}%"
         line6 = f"Nighttime: {nightDesc}"
         line7 = f"    Chance of rain:  {nightRainProb}%"
-        dailyOutput = line1 + "\n" + line2 + "\n" + line3 + "\n" + line4 + "\n" + line5 + "\n" + line6 + "\n" + line7 + "\n"
-        dailyOutput_List.append(dailyOutput)
-        print(dailyOutput)
+        outputDaily += line1 + "\n" + line2 + "\n" + line3 + "\n" + line4 + "\n" + line5 + "\n" + line6 + "\n" + line7 + "\n"
 
-    summary = f"{num_of_days} Day Overview\n\
+    output += f"{num_of_days} Day Overview\n\
     The lowest temperature will be {lowest_temp}, and will occur on {lowestTempDate}.\n\
     The highest temperature will be {highest_temp}, and will occur on {highestTempDate}.\n\
     The average low this week is {avgMin}.\n\
     The average high this week is {avgMax}.\n\
     "
 
-    return summary 
+    output = output + outputDaily + "\n" +"\n"
+    return output
 
 if __name__ == "__main__":
     print(process_weather("data/forecast_5days_a.json"))
