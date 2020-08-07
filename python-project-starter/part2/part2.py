@@ -64,15 +64,9 @@ def process_weather(forecast_file):
     print(min_realFeelShade_temps)
     print(dates)
 
-    # df = {
-    # "our_data": [123, 567, 435, 345, 678, 900, 345, 233],
-    # "more_data": [23, 45, 12, 34, 45, 56, 34, 56],
-    # "columns": ["a", "b", "c", "d", "e", "f", "g", "h"]
-    # }    
-    
     graph_1_data = {
-    "mins" : min_temps,
-    "maxs" : max_temps,
+    "min_temps" : min_temps,
+    "max_temps" : max_temps,
     "dates": dates,
     }
     
@@ -83,17 +77,40 @@ def process_weather(forecast_file):
     "dates": dates
     }
 
+
     fig_1 = px.line(
         graph_1_data, 
-        y = ["mins", "maxs"],
-        x = "dates"
+        y = ["min_temps","max_temps"],
+        x = "dates",
+        labels={
+            "min_temps": "Min Temp (°C)",
+            "max_temps": "Max Temp (°C)"
+        },
+        title="Temperature Trends"
     )
+
+    fig_1.update_layout( 
+        yaxis_title="Temperature (°C)",
+        xaxis_title="Date"
+        )
 
     fig_2 = px.line(
         graph_2_data, 
         y = ["mins", "min_realFeel_temps", "min_realFeelShade_temps"],
-        x = "dates"
-    )
+        x = "dates", 
+        labels={
+            "mins": "Min Temp (°C)",
+            "min_realFeel_temps": "Min_Real Feel Temps (°C)",
+            "min_realFeelShade_temps": "Min_Real Feel Shade Temps (°C)",
+            "dates":"Date"
+        }, 
+        title="Minimum Temperature Trends",
+        )
+    fig_2.update_layout( 
+        yaxis_title="Temperature (°C)",
+        xaxis_title="Dates"
+        )
+
 
     return fig_1.show(), fig_2.show()
 
